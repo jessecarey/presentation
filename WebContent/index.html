@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel = "stylesheet" href = "css/bootstrap.css">
+<style>
+.axis line {
+	stroke: rgba(88, 89, 93, .12);
+}
+.axis path {
+	fill: rgba(88,89,93, .12);
+	shape-rendering: crispEdges;
+}
+.axis text {
+	font: 13px sans-serif;
+	fill: rgba(88, 89, 93, .5);
+}
+html, body{
+width: 100%;
+padding 0;
+margin:0;
+}
+.seperator{
+ width:50%; 
+ height: 50%;
+ float: left;
+}
+.title{
+
+}
+circle{
+opacity:.8;
+}
+rect{
+opacity:.8;
+rx: 20;
+ry: 20;
+}
+.select{
+opacity:.9
+}
+.title{
+font-size: 20px;
+font-familt: Arial Black;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Demo Dashboard</title>
+
+<script src = "js/jquery-1.7.2.min.js"></script>
+<script src = "js/bootstrap.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src = "js/data.js"></script>
+<script src = "js/d3handler.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">Demo Dashboard</a>
+			</div>
+
+		</div>
+	</nav>
+	
+		<div id = "graphone" class= "seperator">
+			<div class="text-center title">Open Tasks By Type</div>
+			<div class ="graph"></div>
+		</div>
+		<div id = "graphtwo" class = "seperator">
+			<div id = "tasktitle" class = "text-center title">Open Tasks Type 1</div>
+			<div class = "graph"></div>
+		</div>
+		<div id = "graphthree" class = "seperator">
+			<div class = "text-center title"> Open Tasks By Employee</div>
+			<div class = "graph"></div>
+		</div>
+		<div id = "graphfour" class = "seperator">
+			<div id = "employeetitle" class = "text-center title"> Open Tasks By Type For Mike</div>
+			<div class = "graph"></div>
+		</div>
+	
+	</div>
+	
+	
+<script>
+initialize();
+</script>
+</body>
+</html>
