@@ -1,7 +1,10 @@
 var color = d3.scale.category20c();
 var x = d3.scale.linear().domain([0,9]).range([0,760]);
+var div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
 
 function initialize() {
+	
+	
 	var svg = d3.select("#graphone").select(".graph").append("svg").attr("height", 350);
 	d3.select("#graphtwo").select(".graph").append("svg").attr("height", 350);
 	d3.select("#graphthree").select(".graph").append("svg").attr("height", 350);
@@ -32,7 +35,6 @@ function initialize() {
 	generateGraphTwo(0);
 	generateGraphThree();
 	generateGraphFour(1);
-	loadLegends();
 
 }
 
@@ -40,12 +42,15 @@ function generateGraphOne() {
 	var xOrdinal = d3.scale.ordinal().domain(
 			[ "one", "two", "three", "four", "five", "six", "seven", "eight",
 					"nine", "ten" ]).range(0, 10).rangePoints([ 0, 760 ]);
-	var y = d3.scale.linear().domain(0, 220).range(320,25);
+	var y = d3.scale.linear().domain([0, 220]).range([320,25]);
 	console.log(y(100));
 	var xAxis = d3.svg.axis().scale(xOrdinal).orient("bottom");
+	var yAxis = d3.svg.axis().scale(y).ticks(5).orient("left");
 	svg = d3.select("#graphone").select("svg");
 	svg.append("g").attr("transform", "translate(25,330)").attr("class",
 			"x axis").call(xAxis);
+	svg.append("g").attr("transform", "translate(-15,0)")
+	.attr("class", "y axis").call(yAxis);
 	layerOne = svg.append("g");
 	layerTwo = svg.append("g");
 	layerOne.selectAll("rect").data(tasksByType).enter().append("rect")
@@ -59,8 +64,11 @@ function generateGraphOne() {
 		return x(i);
 	}).attr("y", function(d) {
 		return 330 - d.open;
-	}).on("mouseover", function() {
+	}).on("mouseover", function(d, i) {
 		d3.select(this).style("opacity", 1);
+		div.transition().duration(200)
+		.style("opacity", .9);
+		div.html(d.open);
 	}).on("mouseout", function() {
 		d3.select(this).style("opacity", .8);
 	}).on("click", function(d, i) {
